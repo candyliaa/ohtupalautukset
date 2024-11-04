@@ -15,3 +15,4 @@ print(f"Lukujen {x} ja {y} erotus on {erotus(x, y)}")
 
 logger("lopetetaan ohjelma")
 print("goodbye!")
+print("test message!")
