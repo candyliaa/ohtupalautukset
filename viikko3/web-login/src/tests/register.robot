@@ -9,46 +9,57 @@ Test Setup      Reset Application Create User And Go To Register Page
 Register With Valid Username And Password
     Set Username  testi
     Set Password  testi123
-    Set Password confirmation  testi123
+    Set Confirm Password  testi123
     Submit Credentials
     Register Should Succeed
 
 Register With Too Short Username And Valid Password
     Set Username  te
     Set Password  testi123
-    Set Password confirmation  testi123
+    Set Confirm Password  testi123
     Submit Credentials
     Register Should Fail With Message
 
 Register With Valid Username And Too Short Password
     Set Username  testi
     Set Password  ei
-    Set Password confirmation  ei
+    Set Confirm Password  ei
     Submit Credentials
     Register Should Fail With Message
 
 Register With Valid Username And Invalid Password
     Set Username  testi
     Set Password  testitesti
-    Set Password confirmation  testitesti
+    Set Confirm Password  testitesti
     Submit Credentials
     Register Should Fail With Message
 
 Register With Nonmatching Password And Password Confirmation
     Set Username  testi
     Set Password  testi123
-    Set Password confirmation  testi321
+    Set Confirm Password  testi321
     Submit Credentials
     Register Should Fail With Message
 
 Register With Username That Is Already In Use
     Set Username kalle123
     Set Password testi123
-    Set Password confirmation  testi123
+    Set Confirm Password  testi123
     Submit Credentials
     Register Should Fail With Message
 
 *** Keywords ***
+
+Set Username
+    [Arguments]  ${username}
+    Input Text  username  ${username}
+
+Set Password
+    [Arguments]  ${password}
+    Input Password  password  ${password}
+
+Set Confirm Password
+    [Arguments]  ${password_confirmation}
 
 Register Should Succeed
     Main Page Should Be Open
