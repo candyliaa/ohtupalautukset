@@ -18,35 +18,35 @@ Register With Too Short Username And Valid Password
     Set Password  testi123
     Set Confirm Password  testi123
     Submit Credentials
-    Register Should Fail With Message
+    Register Should Fail With Message  Username too short
 
 Register With Valid Username And Too Short Password
     Set Username  testi
     Set Password  ei
     Set Confirm Password  ei
     Submit Credentials
-    Register Should Fail With Message
+    Register Should Fail With Message  Password too short
 
 Register With Valid Username And Invalid Password
     Set Username  testi
     Set Password  testitesti
     Set Confirm Password  testitesti
     Submit Credentials
-    Register Should Fail With Message
+    Register Should Fail With Message  Invalid password
 
 Register With Nonmatching Password And Password Confirmation
     Set Username  testi
     Set Password  testi123
     Set Confirm Password  testi321
     Submit Credentials
-    Register Should Fail With Message
+    Register Should Fail With Message  Passwords don't match
 
 Register With Username That Is Already In Use
-    Set Username kalle123
+    Set Username  kalle123
     Set Password testi123
     Set Confirm Password  testi123
     Submit Credentials
-    Register Should Fail With Message
+    Register Should Fail With Message  Username is in use
 
 *** Keywords ***
 
@@ -66,7 +66,7 @@ Submit Credentials
     Click Button  Register
 
 Register Should Succeed
-    Main Page Should Be Open
+    Title Should Be  Welcome to Ohtu Application!
 
 Register Should Fail With Message
     [Arguments]  ${message}
