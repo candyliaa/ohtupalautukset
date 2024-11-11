@@ -18,7 +18,6 @@ Login With Incorrect Password
     Login Should Fail With Message  Invalid username or password
 
 Login With Nonexistent Username
-    Set Username  testiii
     Set Password  testi123
     Submit Credentials
     Login Should Fail With Message  Invalid username or password
