@@ -1,11 +1,4 @@
-from flask import (
-    Flask,
-    render_template,
-    redirect,
-    url_for,
-    request,
-    flash
-)
+from flask import Flask, render_template, redirect, url_for, request, flash
 
 from repositories.user_repository import user_repository
 from services.user_service import user_service

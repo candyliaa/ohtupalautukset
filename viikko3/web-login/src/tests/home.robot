@@ -4,6 +4,9 @@ Suite Setup     Open And Configure Browser
 Suite Teardown  Close Browser
 Test Setup      Reset Application And Go To Starting Page
 
+*** Variables ***
+${HOME_URL}      http://${SERVER}
+
 *** Test Cases ***
 Click Login Link
     Click Link  Login
@@ -18,3 +21,6 @@ Click Register Link
 Reset Application And Go To Starting Page
   Reset Application
   Go To Starting Page
+
+Go To Starting Page
+    Go To  ${HOME_URL}
