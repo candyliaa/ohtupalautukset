@@ -57,7 +57,7 @@ Login After Successful Registration
     Click Button  Logout
     Set Username  testi
     Set Password  testi123
-    Submit Credentials
+    Click Button  Login
     Login Should Succeed
 
 Login After Failed Registration
@@ -68,7 +68,7 @@ Login After Failed Registration
     Click Link  Login
     Set Username  testi
     Set Password  testi
-    Submit Credentials
+    Click Button  Login
     Login Should Fail With Message  Invalid username or password
 
 *** Keywords ***
