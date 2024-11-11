@@ -60,6 +60,7 @@ Set Password
 
 Set Confirm Password
     [Arguments]  ${password_confirmation}
+    Input Password  password_confirmation ${password_confirmation}
 
 Register Should Succeed
     Main Page Should Be Open
