@@ -60,5 +60,5 @@ Register Should Fail With Message
 
 Reset Application Create User And Go To Register Page
     Reset Application
-    Create User  kalle kalle123
+    Create User  kalle  kalle123
     Go To Register Page
