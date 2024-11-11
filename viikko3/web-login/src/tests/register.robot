@@ -43,7 +43,7 @@ Register With Nonmatching Password And Password Confirmation
 
 Register With Username That Is Already In Use
     Set Username  kalle123
-    Set Password testi123
+    Set Password  testi123
     Set Confirm Password  testi123
     Submit Credentials
     Register Should Fail With Message  Username is in use
