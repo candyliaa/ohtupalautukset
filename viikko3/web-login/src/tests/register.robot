@@ -42,11 +42,30 @@ Register With Nonmatching Password And Password Confirmation
     Register Should Fail With Message  Passwords don't match
 
 Register With Username That Is Already In Use
-    Set Username  kalle123
+    Set Username  kalle
     Set Password  testi123
     Set Confirm Password  testi123
     Submit Credentials
     Register Should Fail With Message  Username is in use
+
+Login After Successful Registration
+    Set Username  testi
+    Set Password  testi123
+    Set Confirm Password  testi123
+    Click Link  Continue to main page
+    Click Button  Logout
+    Set Username  testi
+    Set Password  testi123
+    Login Should Succeed
+
+Login After Failed Registration
+    Set Username  testi
+    Set Password  testi
+    Set Confirm Password  testi
+    Click Link  Login
+    Set Username  testi
+    Set Password  testi
+    Login Should Fail With Message  Invalid username or password
 
 *** Keywords ***
 
@@ -77,3 +96,11 @@ Reset Application Create User And Go To Register Page
     Reset Application
     Create User  kalle  kalle123
     Go To Register Page
+
+Login Should Succeed
+    Main Page Should Be Open
+
+Login Should Fail With Message
+    [Arguments]  ${message}
+    Login Page Should Be Open
+    Page Should Contain  ${message}
