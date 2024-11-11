@@ -52,6 +52,7 @@ Login After Successful Registration
     Set Username  testi
     Set Password  testi123
     Set Confirm Password  testi123
+    Submit Credentials
     Click Link  Continue to main page
     Click Button  Logout
     Set Username  testi
@@ -62,6 +63,7 @@ Login After Failed Registration
     Set Username  testi
     Set Password  testi
     Set Confirm Password  testi
+    Submit Credentials
     Click Link  Login
     Set Username  testi
     Set Password  testi
