@@ -78,9 +78,9 @@ class IntJoukko:
 
         return False
 
-    def kopioi_lista(self, a, b):
+    def kopioi_lista(self, original_list, new_list):
         for i in range(0, len(a)):
-            b[i] = a[i]
+            new_list[i] = original_list[i]
 
     def mahtavuus(self):
         return self.alkioiden_lkm
@@ -94,18 +94,18 @@ class IntJoukko:
         return taulu
 
     @staticmethod
-    def yhdiste(a, b):
-        x = IntJoukko()
-        a_taulu = a.to_int_list()
-        b_taulu = b.to_int_list()
+    def yhdiste(first_table, second_table):
+        result_table = IntJoukko()
+        ensimmainen_taulu = first_table.to_int_list()
+        toinen_taulu = second_table.to_int_list()
 
-        for i in range(0, len(a_taulu)):
-            x.lisaa(a_taulu[i])
+        for i in range(0, len(ensimmainen_taulu)):
+            result_table.lisaa(ensimmainen_taulu[i])
 
-        for i in range(0, len(b_taulu)):
-            x.lisaa(b_taulu[i])
+        for i in range(0, len(toinen_taulu)):
+            result_table.lisaa(toinen_taulu[i])
 
-        return x
+        return result_table
 
     @staticmethod
     def leikkaus(a, b):
