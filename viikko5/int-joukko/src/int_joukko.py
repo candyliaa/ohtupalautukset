@@ -111,31 +111,40 @@ class IntJoukko:
         return result_table
 
     @staticmethod
-    def leikkaus(a, b):
-        y = IntJoukko()
-        a_taulu = a.to_int_list()
-        b_taulu = b.to_int_list()
+    def leikkaus(first_table, second_table):
+        result_table = IntJoukko()
+        ensimmainen_taulu = first_table.to_int_list()
+        toinen_taulu = second_table.to_int_list()
 
-        for i in range(0, len(a_taulu)):
-            for j in range(0, len(b_taulu)):
-                if a_taulu[i] == b_taulu[j]:
-                    y.lisaa(b_taulu[j])
+        for i in range(0, len(ensimmainen_taulu)):
+            for j in range(0, len(toinen_taulu)):
+                if ensimmainen_taulu[i] == toinen_taulu[j]:
+                    result_table.lisaa(toinen_taulu[j])
 
-        return y
+        return result_table
 
     @staticmethod
-    def erotus(a, b):
-        z = IntJoukko()
-        a_taulu = a.to_int_list()
-        b_taulu = b.to_int_list()
+    def erotus(first_table, second_table):
+        result_table = IntJoukko()
+        ensimmainen_taulu = first_table.to_int_list()
+        toinen_taulu = second_table.to_int_list()
 
-        for i in range(0, len(a_taulu)):
-            z.lisaa(a_taulu[i])
+        for i in range(0, len(ensimmainen_taulu)):
+            result_table.lisaa(ensimmainen_taulu[i])
 
-        for i in range(0, len(b_taulu)):
-            z.poista(b_taulu[i])
+        for i in range(0, len(toinen_taulu)):
+            result_table.poista(toinen_taulu[i])
 
-        return z
+        return result_table
+
+    def generate_string(self):
+        tuotos = "{"
+        for i in range(0, self.alkioiden_lkm - 1):
+            tuotos = tuotos + str(self.ljono[i])
+            tuotos = tuotos + ", "
+        tuotos = tuotos + str(self.ljono[self.alkioiden_lkm - 1])
+        tuotos = tuotos + "}"
+        return tuotos
 
     def __str__(self):
         if self.alkioiden_lkm == 0:
@@ -143,10 +152,4 @@ class IntJoukko:
         elif self.alkioiden_lkm == 1:
             return "{" + str(self.ljono[0]) + "}"
         else:
-            tuotos = "{"
-            for i in range(0, self.alkioiden_lkm - 1):
-                tuotos = tuotos + str(self.ljono[i])
-                tuotos = tuotos + ", "
-            tuotos = tuotos + str(self.ljono[self.alkioiden_lkm - 1])
-            tuotos = tuotos + "}"
-            return tuotos
+            return self.generate_string()
