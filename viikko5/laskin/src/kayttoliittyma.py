@@ -97,9 +97,9 @@ class Kayttoliittyma:
 
     def _suorita_komento(self, komento):
         if komento == Komento.KUMOA:
-            print("kumoaminen:", self.komento_olio)
             self.komento_olio.kumoa()
-            pass
+            self._arvo_var.set(self._sovelluslogiikka.arvo())
+            return
         self.komento_olio = self._komennot[komento]
         self.komento_olio.suorita()
         self._kumoa_painike["state"] = constants.NORMAL
