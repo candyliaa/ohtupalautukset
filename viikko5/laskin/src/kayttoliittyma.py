@@ -8,11 +8,43 @@ class Komento(Enum):
     NOLLAUS = 3
     KUMOA = 4
 
+class Summa:
+    def __init__(self, sovelluslogiikka, syote):
+        self.sovelluslogiikka = sovelluslogiikka
+        self.syote = syote
+
+    def suorita(self):
+        self.sovelluslogiikka.plus(int(self.syote()))
+    
+class Erotus:
+    def __init__(self, sovelluslogiikka, syote):
+        self.sovelluslogiikka = sovelluslogiikka
+        self.syote = syote
+
+    def suorita(self):
+        self.sovelluslogiikka.miinus(int(self.syote()))
+    
+class Nollaus:
+    def __init__(self, sovelluslogiikka, syote):
+        self.sovelluslogiikka = sovelluslogiikka
+        self.syote = syote
+
+    def suorita(self):
+        self.sovelluslogiikka.nollaa()
 
 class Kayttoliittyma:
     def __init__(self, sovelluslogiikka, root):
         self._sovelluslogiikka = sovelluslogiikka
         self._root = root
+
+        self._komennot = {
+            Komento.SUMMA: Summa(sovelluslogiikka, self._lue_syote),
+            Komento.EROTUS: Erotus(sovelluslogiikka, self._lue_syote),
+            Komento.NOLLAUS: Nollaus(sovelluslogiikka, self._lue_syote),
+        }
+
+    def _lue_syote(self):
+        return self._syote_kentta.get()
 
     def kaynnista(self):
         self._arvo_var = StringVar()
@@ -55,22 +87,8 @@ class Kayttoliittyma:
         self._kumoa_painike.grid(row=2, column=3)
 
     def _suorita_komento(self, komento):
-        arvo = 0
-
-        try:
-            arvo = int(self._syote_kentta.get())
-        except Exception:
-            pass
-
-        if komento == Komento.SUMMA:
-            self._sovelluslogiikka.plus(arvo)
-        elif komento == Komento.EROTUS:
-            self._sovelluslogiikka.miinus(arvo)
-        elif komento == Komento.NOLLAUS:
-            self._sovelluslogiikka.nollaa()
-        elif komento == Komento.KUMOA:
-            pass
-
+        komento_olio = self._komennot[komento]
+        komento_olio.suorita()
         self._kumoa_painike["state"] = constants.NORMAL
 
         if self._sovelluslogiikka.arvo() == 0:
