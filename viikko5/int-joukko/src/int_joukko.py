@@ -25,17 +25,12 @@ class IntJoukko:
             raise Exception(f"{param_type} ei ole numero, tai se on negatiivinen!")
         return param
 
-    def kuuluu(self, n):
-        on = 0
+    def kuuluu(self, element):
 
         for i in range(0, self.alkioiden_lkm):
-            if n == self.ljono[i]:
-                on = on + 1
-
-        if on > 0:
-            return True
-        else:
-            return False
+            if element == self.ljono[i]:
+                return True
+        return False
 
     def lisaa(self, n):
         ei_ole = 0
