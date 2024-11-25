@@ -32,46 +32,46 @@ class IntJoukko:
                 return True
         return False
 
-    def lisaa(self, n):
-        ei_ole = 0
-
+    def lisaa(self, element):
         if self.alkioiden_lkm == 0:
-            self.ljono[0] = n
+            self.ljono[0] = element
             self.alkioiden_lkm = self.alkioiden_lkm + 1
             return True
         else:
             pass
 
-        if not self.kuuluu(n):
-            self.ljono[self.alkioiden_lkm] = n
+        if not self.kuuluu(element):
+            self.ljono[self.alkioiden_lkm] = element
             self.alkioiden_lkm = self.alkioiden_lkm + 1
 
             # ei mahdu enempää, luodaan uusi säilytyspaikka luvuille
             if self.alkioiden_lkm % len(self.ljono) == 0:
-                taulukko_old = self.ljono
-                self.kopioi_lista(self.ljono, taulukko_old)
-                self.ljono = self._luo_lista(self.alkioiden_lkm + self.kasvatuskoko)
-                self.kopioi_lista(taulukko_old, self.ljono)
-
-            return True
+                self.create_new_space()
+                return True
 
         return False
 
-    def poista(self, n):
-        kohta = -1
-        apu = 0
+    def create_new_space(self):
+        taulukko_old = self.ljono
+        self.kopioi_lista(self.ljono, taulukko_old)
+        self.ljono = self._luo_lista(self.alkioiden_lkm + self.kasvatuskoko)
+        self.kopioi_lista(taulukko_old, self.ljono)
+
+    def poista(self, element):
+        index_to_delete = -1
+        tmp_index = 0
 
         for i in range(0, self.alkioiden_lkm):
-            if n == self.ljono[i]:
-                kohta = i  # siis luku löytyy tuosta kohdasta :D
-                self.ljono[kohta] = 0
+            if element == self.ljono[i]:
+                index_to_delete = i
+                self.ljono[index_to_delete] = 0
                 break
 
-        if kohta != -1:
-            for j in range(kohta, self.alkioiden_lkm - 1):
-                apu = self.ljono[j]
+        if index_to_delete != -1:
+            for j in range(index_to_delete, self.alkioiden_lkm - 1):
+                tmp_index = self.ljono[j]
                 self.ljono[j] = self.ljono[j + 1]
-                self.ljono[j + 1] = apu
+                self.ljono[j + 1] = tmp_index
 
             self.alkioiden_lkm = self.alkioiden_lkm - 1
             return True
