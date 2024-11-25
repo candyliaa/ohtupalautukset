@@ -79,7 +79,7 @@ class IntJoukko:
         return False
 
     def kopioi_lista(self, original_list, new_list):
-        for i in range(0, len(a)):
+        for i in range(0, len(original_list)):
             new_list[i] = original_list[i]
 
     def mahtavuus(self):
