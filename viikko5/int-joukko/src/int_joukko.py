@@ -59,24 +59,27 @@ class IntJoukko:
 
     def poista(self, element):
         index_to_delete = -1
-        tmp_index = 0
+        index_to_delete = self.find_index(element)
+        if index_to_delete == None:
+            return False
 
+        self.ljono[index_to_delete] = 0
+        self.move_elements(index_to_delete)
+        return True
+
+    def find_index(self, element):
         for i in range(0, self.alkioiden_lkm):
             if element == self.ljono[i]:
-                index_to_delete = i
-                self.ljono[index_to_delete] = 0
-                break
+                return i
+        return None
 
-        if index_to_delete != -1:
-            for j in range(index_to_delete, self.alkioiden_lkm - 1):
-                tmp_index = self.ljono[j]
-                self.ljono[j] = self.ljono[j + 1]
-                self.ljono[j + 1] = tmp_index
+    def move_elements(self, start):
+        for j in range(start, self.alkioiden_lkm - 1):
+            tmp_value = self.ljono[j]
+            self.ljono[j] = self.ljono[j + 1]
+            self.ljono[j + 1] = tmp_value
 
-            self.alkioiden_lkm = self.alkioiden_lkm - 1
-            return True
-
-        return False
+        self.alkioiden_lkm = self.alkioiden_lkm - 1
 
     def kopioi_lista(self, original_list, new_list):
         for i in range(0, len(original_list)):
