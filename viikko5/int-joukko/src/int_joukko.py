@@ -18,6 +18,8 @@ class IntJoukko:
 
     def check_list_parameter(self, param, param_type=str):
         if param is None:
+            if param_type == "Kapasiteetti":
+                return KAPASITEETTI
             return OLETUSKASVATUS
         elif not isinstance(param, int) or param < 0:
             raise Exception(f"{param_type} ei ole numero, tai se on negatiivinen!")
